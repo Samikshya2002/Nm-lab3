@@ -1,29 +1,22 @@
-#include<stdio.h>
-#include<math.h>
+#include<iostream>
+#include<cmath>
+using namespace std;
 
-/* Define function here */
-#define f(x) pow(x,4)+x+2
+double f(double x){
+	return sin(x);
+}
 
-int main()
-{
- float h,i,j,I,lower, upper, integration=0.0 ;
-
- /* Input */
- printf("Enter lower limit of integration: ");
- scanf("%f", &lower);
- printf("Enter upper limit of integration: ");
- scanf("%f", &upper);
-    
- /* Finding Integration Value */
-    integration= f(lower) + f(upper);
-    h= (upper-lower)/2;
-//    printf("f(x0) and f(x2) =%.3f  ,  %.3f", f(lower), f(upper));
- {
-     i=4*f(lower+h);
-     j=i+integration;
- }
- I= (h*j)/3;
- printf("\nRequired value of integration is: %.3f", I);
-
- return 0;
+int main(){
+	double x0,x1,x2,I,h;
+	cout<<"Enter the lower bound : ";
+	cin>>x0;
+	cout<<endl<<"Enter the upper bound : ";
+	cin>>x2;
+	
+	h=(x2-x0)/2;
+	x1=(x0+x2)/2;
+	I=(h/3)*(f(x0)+f(x2)+4*f(x1));
+	cout<<"The required answer is : "<<I;
+	return 0;
+		
 }
