@@ -1,43 +1,38 @@
-#include<stdio.h>
+#include<iostream>
+#include<cmath>
+using namespace std;
 
-#include<math.h>
-
-/* Define function here */
-#define f(x) pow(x,4)+x+2
-
-int main()
-{
- float lower, upper, integration=0.0, stepSize, k;
- int i, subInterval;
- 
- /* Input */
- printf("Enter lower limit of integration: ");
- scanf("%f", &lower);
- printf("Enter upper limit of integration: ");
- scanf("%f", &upper);
- printf("Enter number of sub intervals: ");
- scanf("%d", &subInterval);
-
- /* Calculation */
- /* Finding step size */
- stepSize = (upper - lower)/subInterval;
-
- /* Finding Integration Value */
- integration = f(lower) + f(upper);
- for(i=1; i<= subInterval-1; i++)
- {
-  k = lower + i*stepSize;
-  if(i%2==0)
-  {
-   integration = integration + 2 * f(k);
-  }
-  else
-  {
-   integration = integration + 4 * f(k);
-  }
- }
- integration = integration * stepSize/3;
- printf("\nRequired value of integration is: %.3f", integration);
-
- return 0;
+double f(double x){
+	return sin(x);
+}
+int main(){
+	int n;
+	cout<<"Enter the number of points : ";
+	cin>>n;
+	double I,a,b,x[n],h;
+	if(n%2==0){
+		cout<<"Enter the lower bound : ";
+		cin>>a;
+		cout<<endl<<"Enter the upper bound : ";
+		cin>>b;
+		h=(b-a)/n;
+		x[0]=a;
+		x[n]=b;
+		for(int i=1;i<n;i++){
+		x[i]=a+(i*h);
+		}
+		for(int i=1;i<n;i++){
+			if(i%2==0){
+				I+=2*f(x[i]);
+			}else{
+				I+=4*f(x[i]);
+			}
+		}
+		I=(I+f(x[0])+f(x[n]))*(h/3);	
+		cout<<endl<<"The required answer is : "<<I;
+	}else{
+		cout<<"n should be even!";
+	}
+	
+	return 0;
 }
